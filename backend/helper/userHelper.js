@@ -2,6 +2,7 @@ const database=require('../config/database')
 const bycrypt=require('bcrypt')
 const randomstring=require('randomstring')
 const nodemailer = require('nodemailer')
+const { promises } = require('nodemailer/lib/xoauth2')
 
 
 module.exports={
@@ -34,8 +35,12 @@ module.exports={
         
             if(dbdata){
                 if(await bycrypt.compare(userData.password,dbdata.password)){
+                   if(dbdata.verified===true){
+                    resolve({user:dbdata,flag:true,verifiedflag:true})
+                   }else{
+                    resolve({user:dbdata,flag:true,verifiedflag:false})
+                   }
                    
-                    resolve({user:dbdata,flag:true})
                 }
                 else{
                     resolve({flag:false})
@@ -99,6 +104,19 @@ module.exports={
               console.log('Email sent: ' + info.response);
             }
           });
+    },
+    updateVerify:(email)=>{
+        return new Promise(async(resolve,reject)=>{
+           const dbdata=await database.user.findOne({email:email})
+           if(dbdata){
+            await database.user.updateOne({email:email},{$set:{verified:true}})
+            resolve(true)
+           }
+           else{
+            resolve(false)
+           }
+        })
+       
     }
 
 

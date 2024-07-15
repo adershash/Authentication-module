@@ -6,6 +6,7 @@ import Profile from "./pages/Profile";
 import Editprofile from "./pages/Editprofile";
 import ChangePassword from "./pages/ChangePassword";
 import EmailVerfication from "./pages/EmailVerfication";
+import VerifyLogin from "./pages/VerifyLogin";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
         <Route element={<Editprofile/>} path="/edit"></Route>
         <Route element={<ChangePassword/>} path="/changepswd"></Route>
         <Route element={<EmailVerfication/>} path="/emailverify"></Route>
+        <Route element={<VerifyLogin/>} path="/verifylogin"></Route>
         
 
       </Routes>

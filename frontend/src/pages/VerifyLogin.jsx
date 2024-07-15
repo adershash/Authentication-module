@@ -1,9 +1,9 @@
-import React, { useState } from 'react'
-import "./emailverification.css"
-import axios from 'axios'
+import React from 'react'
+import { useState } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
+import axios from 'axios'
 
-function EmailVerfication() {
+function VerifyLogin() {
     const [otp,setOtp]=useState('')
     const loc=useLocation()
     const navigate=useNavigate()
@@ -11,9 +11,9 @@ function EmailVerfication() {
     <div className='email-main'>
       <div className="email-form">
         <div className="email-head">
-        <h1>Email Verification</h1>
+        <h1>Login Verification</h1>
         </div>
-        <p>*Verify your email to continue</p>
+        <p>* Enter otp to login</p>
         <div className="emailotp-inp">
         <label htmlFor="">Enter OTP</label>
         <input type="password" name="otp" placeholder='OTP' value={otp} onChange={(e)=>{
@@ -23,10 +23,10 @@ function EmailVerfication() {
      
     <button className='login-btn' onClick={()=>{
         const values={otp:otp}
-        axios.post('http://localhost:7000/verifyemail',values,{withCredentials:true}).then((res)=>{
+        axios.post('http://localhost:7000/verifylogin',values,{withCredentials:true}).then((res)=>{
           if(res.data){
             alert("otp verified successfully")
-            navigate('/login')
+            navigate('/')
           }
           else{
             alert("invalid otp entered")
@@ -41,4 +41,4 @@ function EmailVerfication() {
   )
 }
 
-export default EmailVerfication
+export default VerifyLogin

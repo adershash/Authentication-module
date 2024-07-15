@@ -31,8 +31,12 @@ function Login() {
                 axios.post('http://localhost:7000/login',values,{withCredentials:true}).then((data)=>{
                   console.log(data.data.flag)
                   if(data.data.flag){
-                      
-                      navigate('/')
+                    if(data.data.verifiedflag){
+                      navigate('/verifylogin')
+                    }
+                  else{
+                    navigate('/emailverify',{state:{email:data.data.email}})
+                  }
                       
                   }else{alert('username or password miss match')}})
               }

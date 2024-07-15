@@ -43,29 +43,49 @@ route.post('/signup',async(req,res)=>{
 route.post('/verifyemail',(req,res)=>{
   let op=req.session.otpvalue
   nedate=new Date()
-  const {email,otp}=req.body
+  const {otp}=req.body
   console.log('session at',req.session.otpvalue)
   
   console.log('otp is ',otp.trim())
   
     if(op.otp===otp.trim()){
       console.log('successfully verified')
+      const flag=helper.updateVerify(op.email)
+      res.send(flag)
+      req.session.destroy()
     }
   
   else{
     console.log('invalid otp entered')
+    res.send(false)
   }
 })
 
 
 
 route.post('/login',async(req,res)=>{
+ 
    let userData=await helper.doLogin(req.body)
         
       //console.log(userData) 
       if(userData.flag){ 
-      req.session.userData=userData.user
-      console.log(req.session.id);
+        if(userData.verifiedflag){
+          const otp= helper.generateOtp()
+          helper.sendMail(userData.user.email,otp)
+          userData.user.otp=otp
+          req.session.userData=userData.user
+        }else{
+          
+          const otp=await helper.generateOtp()
+          const otpval={email:req.body.email,otp:otp}
+          req.session.otpvalue=await otpval
+          await helper.sendMail(userData.user.email,otp)
+          console.log("email is at login page is ",userData.user.email)
+          console.log('otp generated is at login',otp);
+          
+        }
+      
+        
         res.send(userData)
       }
       else{
@@ -73,6 +93,29 @@ route.post('/login',async(req,res)=>{
       }
 
 })
+
+
+route.post('/verifylogin',(req,res)=>{
+  let op=req.session.userData
+  nedate=new Date()
+  const {otp}=req.body
+  console.log('session at',req.session.userData)
+  
+  console.log('otp is ',otp.trim())
+  
+    if(op.otp===otp.trim()){
+      console.log('successfully verified')
+      res.send(true)
+      req.session.userData.otp=''
+    }
+  
+  else{
+    console.log('invalid otp entered')
+    res.send(false)
+  }
+})
+
+
 route.get('/logout',(req,res)=>{
        
     req.session.destroy()
