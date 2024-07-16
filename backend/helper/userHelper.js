@@ -85,13 +85,13 @@ module.exports={
         var transporter = nodemailer.createTransport({
             service: 'gmail',
             auth: {
-              user: 'admin email address',
-              pass: 'admin email password'
+              user: 'adersh072@gmail.com',
+              pass: 'aokp dblj tzpt yxqd'
             }
           });
           
           var mailOptions = {
-            from: 'admin email address',
+            from: 'adersh072@gmail.com',
             to: email,
             subject: 'Sending OTP conformation mail',
             text: `your otp is ${otp}`

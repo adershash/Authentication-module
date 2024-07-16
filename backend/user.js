@@ -66,6 +66,7 @@ route.post('/verifyemail',(req,res)=>{
 route.post('/login',async(req,res)=>{
  
    let userData=await helper.doLogin(req.body)
+   
         
       //console.log(userData) 
       if(userData.flag){ 
@@ -96,6 +97,7 @@ route.post('/login',async(req,res)=>{
 
 
 route.post('/verifylogin',(req,res)=>{
+ 
   let op=req.session.userData
   nedate=new Date()
   const {otp}=req.body
