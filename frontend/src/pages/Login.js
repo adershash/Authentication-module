@@ -3,6 +3,7 @@ import React from 'react'
 import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import "./login.css"
+import Swal from 'sweetalert2'
 
 function Login() {
    
@@ -38,7 +39,17 @@ function Login() {
                     navigate('/emailverify',{state:{email:data.data.email}})
                   }
                       
-                  }else{alert('username or password miss match')}})
+                  }else{
+                    Swal.fire({
+                      position: "top end",
+                      icon: "error",
+                      title: "username or password went wrong",
+                      showConfirmButton: false,
+                      timer: 1700
+                    });
+                    
+                  
+                  }})
               }
             
           

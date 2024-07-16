@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import './signup.css'
 import axios from 'axios'
+import Swal from 'sweetalert2'
 
 function Sginup() {
     const navigate=useNavigate()
@@ -58,9 +59,22 @@ function Sginup() {
           axios.post('http://localhost:7000/signup',values,{withCredentials:true}).then((res)=>{
             console.log('flag',res.data.flag);
             if(!res.data){
-              alert('user already exist')
+              Swal.fire({
+                position: "middle",
+                icon: "erorr",
+                title: "User already exist",
+                showConfirmButton: false,
+                timer: 1600
+              });
             }
             else{
+              Swal.fire({
+                position: "middle",
+                icon: "success",
+                title: "User registered susscessfully",
+                showConfirmButton: false,
+                timer: 1600
+              });
               navigate('/emailverify',{state:{email:email}})
             }
           })

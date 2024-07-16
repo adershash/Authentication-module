@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react'
 import "./editprofile.css"
 import { useLocation, useNavigate } from 'react-router-dom'
 import axios from 'axios'
+import Swal from 'sweetalert2'
+
 
 function Editprofile() {
     const [data,setData]=useState({})
@@ -23,7 +25,13 @@ function Editprofile() {
         console.log(data)
         axios.post("http://localhost:7000/edituser",data,{withCredentials:true}).then((res)=>{
             if(res.data.flag){
-                alert("sucessfully updated");
+                Swal.fire({
+                    position: "top end",
+                    icon: "success",
+                    title: "Profile Updated",
+                    showConfirmButton: false,
+                    timer: 1900
+                  });
                 navigate('/')
 
             }

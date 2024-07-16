@@ -93,7 +93,7 @@ module.exports={
           var mailOptions = {
             from: 'adersh072@gmail.com',
             to: email,
-            subject: 'Sending Email conformation',
+            subject: 'Sending OTP conformation',
             text: `your otp is ${otp}`
           };
           
@@ -117,6 +117,19 @@ module.exports={
            }
         })
        
+    },
+
+    doDelete:(userData)=>{
+        return new Promise(async(resolve,reject)=>{
+            const dbdata=await database.user.findOne({email:userData.email})
+            if(dbdata){
+                await database.user.deleteOne({email:dbdata.email})
+                resolve(true)
+            }
+            else{
+                resolve(false)
+            }
+        })
     }
 
 

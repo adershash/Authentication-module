@@ -14,7 +14,7 @@
 }
 .profile-section{
     width:450px;
-    height: 300px;
+    height: 320px;
     background: white;
     border-radius: 7px;
     display: flex;
@@ -28,18 +28,27 @@
     background:rgb(1, 1, 49);
     color: white;
     width: 100%;
+    height: 45px;
+    display: flex;
+    align-items: center;
+    font-family: cursive;
+}
+.profile-main>.profile-section>.profile-header>h1{
+    margin-left: 10px;
 }
 .profile-main>.profile-section>.icons>.icon{
     width:80px;
     height: 80px;
     color: rgb(1, 1, 49);
-    margin-top: 35px;
+    margin-top: 30px;
 }
 .profile-content{
     display: flex;
     justify-content: space-between;
     align-items: center;
     flex-direction: column;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    color: rgb(46, 45, 45);
 }
 .profile-main>.profile-section>.profile-btns{
     margin-top: 15px;

@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import "./changepassword.css"
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import Swal from 'sweetalert2';
 
 function ChangePassword() {
     const navigate=useNavigate()
@@ -47,7 +48,13 @@ function ChangePassword() {
             axios.post('http://localhost:7000/editpassword',password,{withCredentials:true}).then((res)=>{
                 
                 if(res.data.flag){
-                    alert('password updated successfully')
+                  Swal.fire({
+                    position: "middle",
+                    icon: "success",
+                    title: "Password updated successfully",
+                    showConfirmButton: false,
+                    timer: 1600
+                  });
                    navigate('/') 
                 }else{
                     alert("current password is mismatch")

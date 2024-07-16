@@ -16,7 +16,7 @@
 
 .email-form{
     width:400px;
-    height: 200px;
+    height: 220px;
     background: white;
     border-radius: 4px;
     display: flex;
@@ -43,6 +43,7 @@
 .email-main>.email-form>p{
     margin-top: 1rem;
     color: green;
+    margin-left: 2px;
 }
 .emailotp-inp{
     width:100%;

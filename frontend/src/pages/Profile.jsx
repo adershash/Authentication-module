@@ -2,6 +2,7 @@ import React,{useEffect, useState} from 'react'
 import "./profile.css"
 import { useLocation, useNavigate } from 'react-router-dom'
 import axios from 'axios';
+import Swal from 'sweetalert2'
 
 function Profile() {
     const location=useLocation();
@@ -20,11 +21,44 @@ function Profile() {
         })
     })
 
+    function deleteAccount(){
+      Swal.fire({
+        title: "Are you sure?",
+        text: "You won't be able to revert this!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes, delete it!"
+      }).then((result) => {
+        if (result.isConfirmed) {
+          axios.post('http://localhost:7000/delete',userData,{withCredentials:true}).then((res)=>{
+            if(res.data){
+              Swal.fire({
+                title: "Deleted!",
+                text: "Your file has been deleted.",
+                icon: "success"
+              });
+              navigate('/login')
+            }
+            else{
+              Swal.fire({
+                title: "Opps!",
+                text: "Something went wrong.",
+                icon: "error"
+              });
+            }
+          })
+          
+        }
+      });
+    }
+
   return (
     <div className='profile-main'>
         <div className="profile-section">
             <div className="profile-header">
-            <h1 className='profile-header'>Profile</h1>
+            <h1 className='profile-head'>Profile</h1>
             </div>
            
             <div className="icons">
@@ -47,7 +81,10 @@ function Profile() {
                 <button className='pbtns changepswd' onClick={()=>{
                     navigate('/changepswd')
                 }}>change password</button>
-                <button className='pbtns'>delete</button>
+               
+               
+               
+                <button className='pbtns' onClick={deleteAccount}>delete</button>
             </div>
 
             

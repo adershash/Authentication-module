@@ -141,4 +141,11 @@ route.post('/editpassword',async(req,res)=>{
   
 })
 
+
+route.post('/delete',async(req,res)=>{
+    const flag=await helper.doDelete(req.body)
+    res.send(flag)
+    req.session.destroy()
+})
+
 module.exports=route
