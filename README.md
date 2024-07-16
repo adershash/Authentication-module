@@ -51,6 +51,7 @@ This website uses a tech stack of:
   
 
 **Screenshots**  
+![Screenshot (64)](https://github.com/user-attachments/assets/0ba81361-acd0-43b0-9ad7-d8f5340abd69)  
 
 
 
