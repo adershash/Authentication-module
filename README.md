@@ -7,10 +7,10 @@ This website uses a tech stack of:
 **API Documentation**
 
 **Authentication APIs**
-.Sgin Up:POST /signup
--Request Body:{name,email,age,password}
--Response:{flag}
-.Email conformation:POST /verifyemail
+.Sgin Up:POST /signup  
+-Request Body:{name,email,age,password}  
+-Response:{flag}  
+.Email conformation:POST /verifyemail  
 -Request Body:{otp}
 -Response:{flag}
 .Login:POST /login
