@@ -1,3 +1,5 @@
+**importnat info**  
+Relace "admin email address" and "admin password" text with your email address and password in backend>helper>userhelper.js>sendMail fuction inorder to send email  
 **Overview**  
 This website uses a tech stack of:  
 .Frontend:React  
