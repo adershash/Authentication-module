@@ -1,9 +1,9 @@
-**Overview**
-This website uses a tech stack of:
-.Frontend:React
-.Backend:Node.js with Express framework
-.Database:MongoDB
-
+**Overview**  
+This website uses a tech stack of:  
+.Frontend:React  
+.Backend:Node.js with Express framework  
+.Database:MongoDB  
+  
 **API Documentation**
 
 **Authentication APIs**  
